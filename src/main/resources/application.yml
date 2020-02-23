@@ -1,0 +1,23 @@
+app:
+    service:
+        name: hellow
+  
+server:
+    port: 8080
+    servlet:
+        context-path: /${app.service.name}
+  
+management:
+    endpoint:
+        health:
+            enabled: true
+        info:
+            enabled: false # Activated by default
+        metrics:
+            enabled: true
+    endpoints:
+        web:
+            base-path: /admin
+        exposure:
+            include: health, metrics
+    health.mail.enabled: false

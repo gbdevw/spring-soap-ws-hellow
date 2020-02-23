@@ -19,5 +19,5 @@ management:
         web:
             base-path: /admin
         exposure:
-            include: health, metrics
+            include: health, metrics, prometheus
     health.mail.enabled: false

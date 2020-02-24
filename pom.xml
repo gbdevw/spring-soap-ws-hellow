@@ -25,14 +25,28 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- Spring boot starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+		<!-- Starter for Apache CXf + Spring Boot -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+		<!-- Micrometer prometheus registry -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>${micrometer.version}</version>
 		</dependency>
+
+		<!-- Test dependencies -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,15 +59,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Micrometer prometheus registry -->
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-			<version>${micrometer.version}</version>
-		</dependency>
-
-		<!-- Test dependencies -->
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -96,6 +101,11 @@
 									<!-- Location of the wsdl file -->
 									<wsdl>${basedir}/src/main/resources/soap/hellow.wsdl</wsdl>
 									<extraargs>
+										<!-- Add correct runtime location for wsdl -->
+										<extraarg>-wsdlLocation</extraarg>
+										<extraarg>classpath:soap/hellow.wsdl</extraarg>
+										<!-- Generate impl. code -->
+										<extraarg>-impl</extraarg>
 										<!-- Add Serial UUID to generated exceptions -->
 										<extraarg>-faultSerialVersionUID</extraarg>
 										<extraarg>FQCN</extraarg>
@@ -104,7 +114,9 @@
 									</extraargs>
 									<bindingFiles>
 										<!-- Custom binding to make generated DTOs serializable -->
-                                        <bindingFile>${basedir}/src/main/resources/bindings/add_serializable_binding.xml</bindingFile>
+                                        <bindingFile>${basedir}/src/main/resources/soap/add_serializable_binding.xml</bindingFile>
+										<!-- Custom binding to add async methods to WS interface-->
+										<bindingFile>${basedir}/src/main/resources/soap/async_interfaces_binding.xml</bindingFile>
                                     </bindingFiles>
 								</wsdlOption>
 							</wsdlOptions>

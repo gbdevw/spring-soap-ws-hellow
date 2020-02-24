@@ -1,6 +1,5 @@
 package guillaumebraibant.springsoapwshellow.soap;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.WebEndpoint;
@@ -14,7 +13,7 @@ import javax.xml.ws.Service;
  *
  */
 @WebServiceClient(name = "sayHelloService",
-                  wsdlLocation = "file:/home/guillaume/spring-soap-ws-hellow/src/main/resources/soap/hellow.wsdl",
+                  wsdlLocation = "classpath:soap/hellow.wsdl",
                   targetNamespace = "http://springsoapwshellow.guillaumebraibant/soap")
 public class SayHelloService extends Service {
 
@@ -23,13 +22,11 @@ public class SayHelloService extends Service {
     public final static QName SERVICE = new QName("http://springsoapwshellow.guillaumebraibant/soap", "sayHelloService");
     public final static QName SayHelloInterface = new QName("http://springsoapwshellow.guillaumebraibant/soap", "sayHelloInterface");
     static {
-        URL url = null;
-        try {
-            url = new URL("file:/home/guillaume/spring-soap-ws-hellow/src/main/resources/soap/hellow.wsdl");
-        } catch (MalformedURLException e) {
+        URL url = SayHelloService.class.getClassLoader().getResource("soap/hellow.wsdl");
+        if (url == null) {
             java.util.logging.Logger.getLogger(SayHelloService.class.getName())
                 .log(java.util.logging.Level.INFO,
-                     "Can not initialize the default wsdl from {0}", "file:/home/guillaume/spring-soap-ws-hellow/src/main/resources/soap/hellow.wsdl");
+                     "Can not initialize the default wsdl from {0}", "classpath:soap/hellow.wsdl");
         }
         WSDL_LOCATION = url;
     }

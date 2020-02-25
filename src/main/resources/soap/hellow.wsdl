@@ -54,6 +54,7 @@
     <!-- The services will be located at http://localhost:8080/services/sayHello -->
     <service name="sayHelloService">
         <port name="sayHelloInterface" binding="tns:sayHelloSoapHttpBinding">
+            <!-- Do not mind about it, the framework will rewrite it accordingly -->
             <soap:address location="http://localhost:8080/services/sayhello" />
         </port>
     </service>

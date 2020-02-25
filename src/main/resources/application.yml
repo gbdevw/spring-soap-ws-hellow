@@ -15,6 +15,9 @@ management:
             enabled: false # Activated by default
         metrics:
             enabled: true
+        # Expose endpoint for prometheus scraping
+        prometheus:
+            enabled: true
     endpoints:
         web:
             base-path: /admin

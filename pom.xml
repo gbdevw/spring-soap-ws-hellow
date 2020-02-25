@@ -87,7 +87,6 @@
 				<executions>
 					<execution>
 						<id>wsdl2java</id>
-						<!-- Generate sources from WSDL during the maven generate-sources phase -->
 						<phase>generate-sources</phase>
 						<configuration>
 							<!-- base dir. to put generated sources -->
@@ -106,6 +105,8 @@
 										<extraarg>classpath:soap/hellow.wsdl</extraarg>
 										<!-- Generate impl. code -->
 										<extraarg>-impl</extraarg>
+										<!-- Prevent plugin from overriding sources -->
+										<extraarg>-keep</extraarg>
 										<!-- Add Serial UUID to generated exceptions -->
 										<extraarg>-faultSerialVersionUID</extraarg>
 										<extraarg>FQCN</extraarg>

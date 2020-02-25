@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
                       targetNamespace = "http://springsoapwshellow.guillaumebraibant/soap",
                       wsdlLocation = "classpath:soap/hellow.wsdl",
                       endpointInterface = "guillaumebraibant.springsoapwshellow.soap.SayHelloInterface")
+@Service
 public class SayHelloInterfaceImpl implements SayHelloInterface {
 
     private static final Logger LOG = Logger.getLogger(SayHelloInterfaceImpl.class.getName());

@@ -25,7 +25,9 @@
     
     <!-- Define the interface sayHelloInterface that will have one method named sayHello -->
     <portType name="sayHelloInterface">
+        <documentation>This interface exposes several method that compute a greeting message based on the provided username</documentation>
         <operation name="sayHello">
+            <documentation>This operation takes in a parameter a user name and return a greeting message</documentation>
             <!-- The method sayHello uses the two messages defined in the message elements -->
             <input name="request" message="tns:sayHelloInput" />
             <output name="response" message="tns:sayHelloOutput" />

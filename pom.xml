@@ -32,6 +32,13 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!-- Spring Boot security management -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
 		<!-- Starter for Apache CXf + Spring Boot -->
 		<dependency>
             <groupId>org.apache.cxf</groupId>

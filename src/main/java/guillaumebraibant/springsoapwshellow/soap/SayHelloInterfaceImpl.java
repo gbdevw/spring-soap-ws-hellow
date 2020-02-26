@@ -6,7 +6,6 @@
 
 package guillaumebraibant.springsoapwshellow.soap;
 
-import java.util.logging.Logger;
 import java.util.concurrent.Future;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,6 +16,11 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.AsyncHandler;
 import javax.xml.ws.Response;
 
+import org.apache.cxf.annotations.SchemaValidation;
+import org.apache.cxf.annotations.UseAsyncMethod;
+import org.apache.cxf.jaxws.ServerAsyncResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +28,6 @@ import org.springframework.stereotype.Service;
  * Generated source version: 3.3.5
  *
  */
-
 @javax.jws.WebService(
                       serviceName = "sayHelloService",
                       portName = "sayHelloInterface",
@@ -32,39 +35,45 @@ import org.springframework.stereotype.Service;
                       wsdlLocation = "classpath:soap/hellow.wsdl",
                       endpointInterface = "guillaumebraibant.springsoapwshellow.soap.SayHelloInterface")
 @Service
+@SchemaValidation
 public class SayHelloInterfaceImpl implements SayHelloInterface {
 
-    private static final Logger LOG = Logger.getLogger(SayHelloInterfaceImpl.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(SayHelloInterfaceImpl.class.getName());
 
     /* (non-Javadoc)
      * @see guillaumebraibant.springsoapwshellow.soap.SayHelloInterface#sayHelloAsync(guillaumebraibant.springsoapwshellow.soap.FullName username)*
      */
     public Response<java.lang.String> sayHelloAsync(FullName username) {
-       return null;
-       /* not called */
+        
+        // Can perform async task by providing the server async response to a task
+        // that will be run by a thread and that will complete the response
+        ServerAsyncResponse<String> result = new ServerAsyncResponse<>();
+        LOG.info("Executing operation sayHello for " + username.getFirstName() + " " + username.getLastName());
+        result.set("Hello " + username.firstName + " " + username.getLastName() + " !");
+        return result;
     }
 
     /* (non-Javadoc)
      * @see guillaumebraibant.springsoapwshellow.soap.SayHelloInterface#sayHelloAsync(guillaumebraibant.springsoapwshellow.soap.FullName username, AsyncHandler<java.lang.String> asyncHandler)*
      */
     public Future<?> sayHelloAsync(FullName username, AsyncHandler<java.lang.String> asyncHandler) {
-       return null;
-       /* not called */
+       
+        // Can perform async task by providing the server async response to a task
+        // that will be run by a thread and that will complete the response
+        ServerAsyncResponse<String> result = new ServerAsyncResponse<>();
+        LOG.info("Executing operation sayHello for " + username.getFirstName() + " " + username.getLastName());
+        result.set("Hello " + username.firstName + " " + username.getLastName() + " !");
+        asyncHandler.handleResponse(result);
+        return result;
     }
 
     /* (non-Javadoc)
      * @see guillaumebraibant.springsoapwshellow.soap.SayHelloInterface#sayHello(guillaumebraibant.springsoapwshellow.soap.FullName username)*
      */
+    @UseAsyncMethod
     public java.lang.String sayHello(FullName username) {
-        LOG.info("Executing operation sayHello");
-        System.out.println(username);
-        try {
-            java.lang.String _return = "";
-            return _return;
-        } catch (java.lang.Exception ex) {
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
+        LOG.info("Executing operation sayHello for " + username.getFirstName() + " " + username.getLastName());
+        return "Hello " + username.firstName + " " + username.getLastName() + " !";
     }
 
 }

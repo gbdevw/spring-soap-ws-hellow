@@ -21,6 +21,7 @@ management:
     endpoints:
         web:
             base-path: /admin
-        exposure:
-            include: health, metrics, prometheus
+            exposure:
+                include: health, metrics, prometheus
+    metrics.tags.application: ${app.service.name}
     health.mail.enabled: false

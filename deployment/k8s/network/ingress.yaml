@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sayhello-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - path : /hellow
+            backend:
+              serviceName: hellow
+              servicePort: 8080
+          - path: /grafana
+            backend:
+              serviceName: grafana
+              servicePort: 3000

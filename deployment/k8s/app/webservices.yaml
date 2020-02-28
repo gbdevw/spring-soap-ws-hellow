@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/component: service
     app.kubernetes.io/part-of: hellow
 spec:
-  type: ClusterIP
+  clusterIP: None
   ports:
     - port : 8080
       targetPort: 8080
@@ -47,9 +47,6 @@ spec:
         prometheus.io/port: "8080"
         prometheus.io/path: "/hellow/admin/prometheus"
     spec:
-      volumes:
-        - name: logs
-          emptyDir: {}
       containers:
         - name: hellow
           image: "guillaumebraibant/k8s-ws-sboot-cxf:sayhello-1.0.0"
@@ -58,21 +55,3 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          volumeMounts:
-            - mountPath: /var/log
-              name: logs
-          livenessProbe:
-            httpGet:
-              path: "/hellow/admin/health"
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 3
-        - name: promtail-sidecar
-          image: "guillaumebraibant/k8s-ws-sboot-cxf:custom-promtail-1.0.0"
-          imagePullPolicy: Always
-          command:
-            - "/usr/bin/promtail"
-            - "-config.file=/etc/promtail/CUSTOM-config.yaml"
-          volumeMounts:
-            - mountPath: /var/log
-              name: logs

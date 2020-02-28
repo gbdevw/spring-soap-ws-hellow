@@ -6,8 +6,6 @@ networks:
 volumes:
   logs:
   prometheus-data:
-  promtail-data:
-  loki-data:
 
 services:
       
@@ -28,28 +26,6 @@ services:
       - "9090:9090"
     volumes:
       - prometheus-data:/prometheus
-    networks:
-      - sayhello
-
-  loki:
-    image: grafana/loki:latest
-    ports:
-      - "3100"
-    command: -config.file=/etc/loki/local-config.yaml
-    volumes:
-      - loki-data:/tmp/loki
-    networks:
-      - sayhello
-
-  promtail:
-    build: ./monitoring/promtail
-    image: "${DOCKERHUB_REPO}:${PROMTAIL_BASE_TAG}-${IMAGES_VERSION}"
-    command: -config.file=/etc/promtail/custom-config.yaml
-    depends_on:
-      - "sayhello"
-    volumes:
-      - logs:/var/log
-      - promtail-data:/tmp
     networks:
       - sayhello
 

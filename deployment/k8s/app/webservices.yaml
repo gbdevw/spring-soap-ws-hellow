@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/component: service
     app.kubernetes.io/part-of: hellow
 spec:
+  type: ClusterIP
   ports:
     - port : 8080
       targetPort: 8080
@@ -62,7 +63,7 @@ spec:
               name: logs
           livenessProbe:
             httpGet:
-              path: /hellow/admin/health
+              path: "/hellow/admin/health"
               port: 8080
             initialDelaySeconds: 20
             periodSeconds: 3

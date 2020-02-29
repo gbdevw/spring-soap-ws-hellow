@@ -7,14 +7,12 @@ metadata:
     app.kubernetes.io/component: service
     app.kubernetes.io/part-of: hellow
 spec:
-  clusterIP: None
+  type: clusterIP
   ports:
     - port : 8080
       targetPort: 8080
   selector:
-    app.kubernetes.io/name: hellow
-    app.kubernetes.io/component: app
-    app.kubernetes.io/part-of: hellow
+    hellow: hellow-app-pods
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,9 +26,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: hellow
-      app.kubernetes.io/component: app
-      app.kubernetes.io/part-of: hellow
+      hellow: hellow-app-pods
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -40,8 +36,9 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: hellow
-        app.kubernetes.io/component: app
+        app.kubernetes.io/component: pods
         app.kubernetes.io/part-of: hellow
+        hellow: hellow-app-pods
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8080"
@@ -55,3 +52,23 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /hellow/admin/health
+              port: http
+            timeoutSeconds: 2
+            periodSeconds: 3
+            failureThreshold: 2
+          startupProbe:
+            httpGet:
+              path: /hellow/admin/health
+              port: http
+            failureThreshold: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /hellow/admin/health
+              port: http
+            timeoutSeconds: 2
+            periodSeconds: 1
+            failureThreshold: 1

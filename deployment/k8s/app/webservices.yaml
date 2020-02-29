@@ -44,6 +44,9 @@ spec:
         prometheus.io/port: "8080"
         prometheus.io/path: "/hellow/admin/prometheus"
     spec:
+      volumes:
+        - name: logs
+          emptyDir: {}
       containers:
         - name: hellow
           image: "guillaumebraibant/k8s-ws-sboot-cxf:sayhello-1.0.0"
@@ -52,6 +55,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          volumeMounts:
+            - mountPath: /var/log
+              name: logs
           livenessProbe:
             httpGet:
               path: /hellow/admin/health
@@ -72,3 +78,12 @@ spec:
             timeoutSeconds: 2
             periodSeconds: 1
             failureThreshold: 1
+        - name: promtail-sidecar
+          image: "guillaumebraibant/k8s-ws-sboot-cxf:custom-promtail-1.0.0"
+          imagePullPolicy: Always
+          command:
+            - "/usr/bin/promtail"
+            - "-config.file=/etc/promtail/custom-config.yaml"
+          volumeMounts:
+            - mountPath: /var/log
+              name: logs

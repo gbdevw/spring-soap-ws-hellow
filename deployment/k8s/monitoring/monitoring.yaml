@@ -148,6 +148,24 @@ spec:
         ports:
           - containerPort: 3000
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki
+  labels:
+    app.kubernetes.io/name: hellow
+    app.kubernetes.io/component: service
+    app.kubernetes.io/part-of: monitoring
+spec:
+  clusterIP: None
+  ports:
+    - port: 3100
+      targetPort: 3100  
+  selector:
+    app.kubernetes.io/name: hellow
+    app.kubernetes.io/component: loki
+    app.kubernetes.io/part-of: monitoring
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:

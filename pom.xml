@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>guillaume-braibant</groupId>
 	<artifactId>spring-soap-ws-hellow</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>spring-soap-ws-hellow</name>
 	<description>Simple "Hello" SOAP webservice based on Spring Boot and Spring WS</description>
 

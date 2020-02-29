@@ -64,13 +64,8 @@ spec:
               port: http
             timeoutSeconds: 2
             periodSeconds: 3
-            failureThreshold: 2
-          startupProbe:
-            httpGet:
-              path: /hellow/admin/health
-              port: http
-            failureThreshold: 20
-            periodSeconds: 3
+            failureThreshold: 1
+            initialDelaySeconds: 30
           readinessProbe:
             httpGet:
               path: /hellow/admin/health

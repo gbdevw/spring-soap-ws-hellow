@@ -1,4 +1,4 @@
-##  Simple "Hello" SOAP webservice cloud native app. with Spring Boot and Apache CXF
+## "Hello" SOAP webservice cloud native app. with Spring Boot and Apache CXF
 
 This example shows a SOAP webservice application built with Spring Boot and Apache CXF. The application is designed to be compliant with the 12-factor app. methodology and be easy to build, configure and deploy on various environments.
 
@@ -62,3 +62,7 @@ Grafana has a default account (user : admin - pwd : admin) on the first connecti
 Grafana comes with a predefined dashboard provided by Micrometer : https://micrometer.io/docs/registry/prometheus
 
 Grafana is preconfigured to use Loki to get the logs : https://grafana.com/docs/grafana/latest/features/datasources/loki/
+
+### About the 12-factor app. methodology
+
+https://12factor.net/

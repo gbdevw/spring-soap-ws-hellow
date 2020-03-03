@@ -38,11 +38,11 @@ docker-compose down -v
 
 Endpoints :
 
-http://<docker-ip>:8080/hellow/services : SOAP Webservice UDDI
+http://docker-ip:8080/hellow/services : SOAP Webservice UDDI
 
-http://<docker-ip>:8080/hellow/admin/health : Health endpoint
+http://docker-ip:8080/hellow/admin/health : Health endpoint
 
-http://<docker-ip>:3000 : Grafana
+http://docker-ip:3000 : Grafana
 
 ### Run the full app. with Kubernetes
 
@@ -69,11 +69,11 @@ kubectl apply -f ./network/ingress.yaml
 
 Endpoints :
 
-http://<k8s-ip>/hellow/services : SOAP Webservice UDDI
+http://64.225.80.239/hellow/services : SOAP Webservice UDDI
 
-http://<k8s-ip>/hellow/admin/health : Health endpoint
+http://64.225.80.239/hellow/admin/health : Health endpoint
 
-http://<k8s-ip>/grafana : Grafana
+http://64.225.80.239/grafana : Grafana
 
 ### Monitoring with Grafana
 

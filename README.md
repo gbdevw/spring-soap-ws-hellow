@@ -6,30 +6,42 @@ The application comes with scripts to deploy the application with Docker Compose
 
 ### CLI usage
 
-The commands used in this guide must be issued from the root directory of the project (that contains the pom.xml and docker-compose.yml).
+The commands used in this guide must be issued from the root directory of the project.
 
 ### Build from sources
 
+```
 mvn clean package
+```
 
 ### Build the containers
 
-You can build all the containers using Docker Compose : docker-compose build
+You can build all the containers using Docker Compose : 
+
+```
+docker-compose build
+```
 
 ### Run the full app. with Docker Compose
 
 You can start all the containers on your Docker machine (webservice app. + monitoring) using Docker Compose :
 
+```
 docker-compose up -d
+```
 
 This command stops and removes all the containers and volumes :
 
+```
 docker-compose down -v
+```
 
 Endpoints :
 
 http://<docker-ip>:8080/hellow/services : SOAP Webservice UDDI
+
 http://<docker-ip>:8080/hellow/admin/health : Health endpoint
+
 http://<docker-ip>:3000 : Grafana
 
 ### Run the full app. with Kubernetes
@@ -38,21 +50,29 @@ http://<docker-ip>:3000 : Grafana
 
 2. Deploy the monitoring :
 
+```
 kubectl apply -f ./monitoring/prometheus-rbac.yaml
 kubectl apply -f ./monitoring/monitoring.
+```
 
 3. Deploy the webservice app. :
 
+```
 kubectl apply -f ./app/webservices.yaml
+```
 
 4. Deploy the ingress resource :
 
+```
 kubectl apply -f ./network/ingress.yaml
+```
 
 Endpoints :
 
 http://<k8s-ip>/hellow/services : SOAP Webservice UDDI
+
 http://<k8s-ip>/hellow/admin/health : Health endpoint
+
 http://<k8s-ip>/grafana : Grafana
 
 ### Monitoring with Grafana

@@ -69,11 +69,11 @@ kubectl apply -f ./network/ingress.yaml
 
 Endpoints :
 
-http://64.225.80.239/hellow/services : SOAP Webservice UDDI
+http://kube-ip/hellow/services : SOAP Webservice UDDI
 
-http://64.225.80.239/hellow/admin/health : Health endpoint
+http://kube-ip/hellow/admin/health : Health endpoint
 
-http://64.225.80.239/grafana : Grafana
+http://kube-ip/grafana : Grafana
 
 ### Monitoring with Grafana
 

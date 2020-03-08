@@ -120,3 +120,13 @@ NOTE : There is no monitoring with Grafana since Azure provides a default monito
 ### About the 12-factor app. methodology
 
 https://12factor.net/
+
+### Conclusion
+
+This example has shown you how to make a simple SOAP Webservice application with a modern framework like Spring. You can reuse all your Spring skills to enhance your application.
+
+This example has also shown you that you can easily build and deploy micro-service SOAP webservice application (remember : one wsdl, one service, one interface, SOLID principles).
+
+This application can be deployed on various cloud envrionment without the need to modify or rebuild the sources. The application can be easily reconfigured using environment variables. You can then script your deployment and script your CI/CD pipeline. 
+
+Enjoy !

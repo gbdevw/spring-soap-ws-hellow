@@ -1,6 +1,6 @@
 ## "Hello" SOAP webservice cloud native app. with Spring Boot and Apache CXF
 
-This example shows a SOAP webservice application built with Spring Boot and Apache CXF. The application is designed to be compliant with the [12-factor app. methodology](https://12factor.net/) and be easy to build, configure and deploy on various environments.
+This example shows a SOAP webservice application built with Spring Boot and Apache CXF (JAVA 8). The application is designed to be compliant with the [12-factor app. methodology](https://12factor.net/) and be easy to build, configure and deploy on various environments.
 
 The application comes with scripts to deploy the application with Docker Compose, on Kubernetes or on a Azure Web App. A monitoring stack composed of Prometheus (metrics), Loki (logs) and Grafana (visualization) is preconfigured for these deployment methods.
 
@@ -22,6 +22,12 @@ You can also change configuration at runtime using [externalized configuration](
 
 ```
 mvn clean package
+```
+
+### Run the java application
+
+```
+java -jar target/spring-soap-ws-hellow-1.0.0.jar
 ```
 
 ### Build the containers with Docker Compose
@@ -77,27 +83,27 @@ Grafana is preconfigured to [use Loki to get the logs](https://grafana.com/docs/
 
 ### Review of the 12-factor app. methodology
 
-1. Code base
+1. **Code base**
 
 The application has only one code base for its logic. You can then configure many ways to deploy it without modifying any source code.
 
-2. Dependencies
+2. **Dependencies**
 
 Dependencies are declared in the pom.xml file and are managed by Maven. All dependencies are available and maintened in the Maven Central Repository.
 
-3. Configuration
+3. **Configuration**
 
 Spring already manage [externalized configuration](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html) in a way that is compliant with the 12-factor app. methodology.
 
-4. Backing Services
+4. **Backing Services**
 
 This one is not applicable in the current example. However, Spring has a great support to manage backing service in a way that is compliant with the 12-factor app. methodology.
 
-5. Build, release, run
+5. **Build, release, run**
 
 Maven is used for the build and test stages. Docker is used to build the container images that will be the building blocks of our deployment. Various technologies and providers can be used to run the container.
 
-6. Processes
+6. **Processes**
 
 This one is not applicable in our example but here are a few guidelines to comply to it : 
 
@@ -109,31 +115,31 @@ This one is not applicable in our example but here are a few guidelines to compl
 
 - Do not try to make your processes or thread communicate directly. Instead, use a backing service that can manage that communication (A queue, a publish/subscribe messaging system, ...).
 
-7. Port Binding
+7. **Port Binding**
 
 The use of Spring Boot allows you to start the application like a classic Java application. The application binds to a port and is directly usable through the network.
 
-8. Concurrency
+8. **Concurrency**
 
 If you apply the guidelines in the 6. Processes section, you should be fine with this one. Your application should be able to handle more workload by scaling the number of application instances and by sharing the workload among them.
 
-9. Disposability
+9. **Disposability**
 
 Spring already provide support to handle a SIGTERM and shutdown gracefully the application. For the fast startup, it all depends on you.
 
-10. Dev/Prod parity
+10. **Dev/Prod parity**
 
 By using container deployment and Docker Compose, you allow your devs to easly spin-up the whole application on their laptop and run their integration tests against live services that are the same as those in prod (not against in-memory databases, etc...).
 
 You can then deploy the application in your production environment with no or minimal divergence.
 
-11. Logs
+11. **Logs**
 
 In the code, logs are managed regardless of their destination, routing, etc... using a framework like SLF4J. Logs should always be written to stdout. Then, they are redirected to a log appender that can react to the logs, manage them, display them, etc...
 
 Our example is not absolutly compliant since our agent (promtail) fetch logs from a log file to route them to Loki.
 
-12. Admin processes
+12. **Admin processes**
 
 This one is not applicable to our example. However, Spring can  run scripts when the application starts and offers various endpoints that can be used to shutdown the app.
 

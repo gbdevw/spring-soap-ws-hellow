@@ -38,9 +38,11 @@ You can build all the containers using Docker Compose :
 docker-compose build
 ```
 
-The .env file defines some env. variables that can be used to customize image tags, container repository used, etc... All images will be pushed in the same container repository and will be tagged this way : <DOCKERHUB_REPO>:<BASE_TAG>-<IMAGES_VERSION>
+The .env file defines some env. variables that can be used to customize image tags, container repository used, etc... All images will be pushed in the same container repository and will be tagged this way : 
 
-You can push all contiane rimages using Docker Compose :
+<DOCKERHUB_REPO>:<BASE_TAG>-<IMAGES_VERSION>
+
+You can push all container images using Docker Compose :
 
 ```
 docker-compose push

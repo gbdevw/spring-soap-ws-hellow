@@ -10,7 +10,7 @@ The commands used in this guide must be issued from the root directory of the pr
 
 ### Development
 
-Guidelines about development can be found [here](src\main\README.md).
+Guidelines about development can be found [here](src/main/README.md).
 
 ### Configuration
 
@@ -65,7 +65,7 @@ http://docker-ip:3000 : Grafana
 ### Deploy the app.
 
 - [Using Kubernetes](deployment/k8s/README.md)
-- [Using an Azure Web App](deployment\azure\web-app-arm-rg-docker\README.md)
+- [Using an Azure Web App](deployment/azure/web-app-arm-rg-docker/README.md)
 
 ### Monitoring with Grafana
 
@@ -141,7 +141,7 @@ This one is not applicable to our example. However, Spring can  run scripts when
 
 This example has shown you how to make a simple SOAP Webservice application with a modern framework like Spring. You can reuse all your Spring skills to enhance your application.
 
-This example is also suitable to build and deploy micro-service SOAP webservice application (remember : one wsdl, one service, one interface, SOLID principles).
+This example is also suitable to build and deploy micro-service SOAP webservice application. Remember : one wsdl, one service, one interface, one request message and one response message containing a single element for each operation. Mind your SOLID principles.
 
 This application can be deployed on various cloud environment without the need to modify or rebuild the sources. The application can be easily reconfigured using environment variables. You can then script your deployment and your CI/CD pipeline. 
 

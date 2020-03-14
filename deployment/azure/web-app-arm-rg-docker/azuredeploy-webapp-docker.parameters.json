@@ -11,24 +11,6 @@
         "hostingPlanName": {
             "value": "ASP-default-a9b2"
         },
-        "alwaysOn": {
-            "value": false
-        },
-        "sku": {
-            "value": "Free"
-        },
-        "skuCode": {
-            "value": "F1"
-        },
-        "workerSize": {
-            "value": "0"
-        },
-        "workerSizeId": {
-            "value": "0"
-        },
-        "numberOfWorkers": {
-            "value": "1"
-        },
         "linuxFxVersion": {
             "value": "DOCKER|guillaumebraibant/k8s-ws-sboot-cxf:sayhello-1.0.0"
         },

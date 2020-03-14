@@ -12,22 +12,28 @@
             "type": "string"
         },
         "alwaysOn": {
-            "type": "bool"
+            "type": "bool",
+            "defaultValue": false
         },
         "sku": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Free"
         },
         "skuCode": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "F1"
         },
         "workerSize": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "0"
         },
         "workerSizeId": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "0"
         },
         "numberOfWorkers": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "1"
         },
         "linuxFxVersion": {
             "type": "string"
